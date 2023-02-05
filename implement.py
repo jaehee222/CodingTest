@@ -16,4 +16,4 @@ for i in range(len(arr)):
     elif arr[i] == 'D' and mineX < X:
         mineX += 1
 
-print("%d %d" % (mineX,mineY))
+print("%d %d" % (mineX, mineY))
