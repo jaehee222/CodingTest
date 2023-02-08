@@ -20,17 +20,27 @@ count = 1
 donMove = 0
 while True:
     donMove += 1
-    # 4번동안 이동을 못한것 -> 이동 불가!
-    if donMove == 5: break
+    # 4번동안 이동을 못한것 -> 이동불가.. 일단 뒤로 후진..
+    if donMove == 5:
+        tmpDir = man[2] + 2
+        if tmpDir > 3: tmpDir -= 4
+        man[0] += directionX[tmpDir]
+        man[1] += directionY[tmpDir]
+        # 뒤가 바다일 때..
+        if (gameMap[man[0]][man[1]] == 1):
+            break
+        # 아니라면 새출발..
+        else:
+            donMove = 0
+    else:
+        # 현재방향에서 왼쪽 바라보기
+        man[2] += 1
+        # 서쪽에서 왼쪽 바라보는거면 다시 북쪽..
+        if (man[2] == 4): man[2] = 0
 
-    # 현재방향에서 왼쪽 바라보기
-    man[2] += 1
-    # 서쪽에서 왼쪽 바라보는거면 다시 북쪽..
-    if (man[2] == 4): man[2] = 0
-
-    # 왼쪽으로 이동..
-    tmpX += directionX[man[2]]
-    tmpY += directionY[man[2]]
+        # 왼쪽으로 이동..
+        tmpX += directionX[man[2]]
+        tmpY += directionY[man[2]]
 
     # 맵을 벗어났을 때
     if (tmpX > X[1] or tmpX < 0 or tmpY > X[1] or tmpY < 0): continue
