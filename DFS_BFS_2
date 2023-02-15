@@ -1,0 +1,42 @@
+from collections import deque
+
+N, M = map(int, input().split())
+
+miroMap = []
+# 미로 맵 입력받기
+for i in range(N):
+    miroMap.append(list(map(int, input().split())))
+
+# 동서남북
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+count = 0
+def BFSEx(x, y):
+    queue = deque()
+    # 현재 위치 넣기
+    queue.append(x,y)
+    while queue:
+        # 큐 하나 꺼내기
+        xx, yy = queue.popleft()
+        # 상, 하, 좌, 우 확인
+        for i in range(4):
+            nx = xx + dx[i]
+            ny = yy + dy[i]
+            # 범위에서 벗어나면 무시
+            if nx < 0 or nx >= N or ny < 0 or ny >= M:
+                continue
+            # 괴물이 있는 곳은 무시`
+            if miroMap[nx][ny] == 0:
+                continue
+            # 처음방문하는곳!
+            if miroMap[nx][ny] == 1:
+                # 처음방문하는 곳이니.. 거리 하나를 늘려준다
+                miroMap[nx][ny] = miroMap[xx][yy] + 1
+                # 해당 위치를 큐에 넣기
+                queue.append(nx,ny)
+
+    # 목적지에 있는 숫자를 리턴 .. 그게 최단거리
+    return miroMap[N-1][M-1]
+
+print(BFSEx(0,0))
