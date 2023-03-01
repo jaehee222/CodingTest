@@ -5,14 +5,14 @@ N, M, K, X = map(int, input().split())
 
 # point! 출발도시의 번호~모든 도시 < 값이 K 인 곳을 찾자!
 
-DFS = []
+inputMap = []
 for i in range(M):
-    DFS.append(list(map(int, input().split())))
+    inputMap.append(list(map(int, input().split())))
 
-DFS_2 = [[] for i in range(N + 1)]
+nodMap = [[] for i in range(N + 1)]
 # 배열로 노드 연결된 선 만들기..
 for i in range(M):
-    DFS_2[DFS[i][0]].append(DFS[i][1])
+    nodMap[inputMap[i][0]].append(inputMap[i][1])
 
 visit = [0] * (N + 1);
 queue = deque()
@@ -20,7 +20,7 @@ queue = deque()
 queue.append(X)
 while queue:
     v = queue.popleft()
-    for i in DFS_2[v]:
+    for i in nodMap[v]:
         if visit[i] == 0:
             queue.append(i)
             visit[i] += visit[v] + 1
