@@ -1,0 +1,13 @@
+#  N명의 학생정보가 있다.
+# 학생이름과 성적정보가 주어졌을 때 성적이 낮은 순서대로 학생이름 출력..
+
+n = int(input())
+array = []
+for i in range(n):
+    info = input().split()
+    array.append((info[0],int(info[1])))
+
+array = sorted(array, key=lambda student: student[1])
+
+for i in array:
+    print(i[0],end=' ')
