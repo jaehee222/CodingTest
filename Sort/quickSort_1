@@ -1,0 +1,24 @@
+# 개념에 충실한 퀵서트
+array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+
+def quickSort(array, start, end):
+    # 원소가 하나면,, 볼필요가 있나 ? 그리고 시작이 큰건 안됨
+    if start >= end:
+        return
+    pivot = start  # 피벗은 시작
+    left = start + 1  # 왼쪽부터 탐색할것 (피벗보다 큰거!)
+    right = end  # 오른쪽부터 탐색 (피벗보다 작은거!)
+    while left <= right:  # 교차되기전
+        while left <= end and array[left] <= array[pivot]:  # 왼쪽부터 탐색해서 피벗보다 클 때 빠져나옴
+            left += 1
+        while right > start and array[right] >= array[pivot]:  # 오른쪽부터 탐색해서 피벗보다 작을 때 빠져나옴
+            right -= 1
+        if left > right:  # 교차될때
+            array[pivot], array[right] = array[right], array[pivot]
+        else:
+            array[left], array[right] = array[right], array[left]
+    quickSort(array, start, right - 1)
+    quickSort(array, right + 1, end)
+
+quickSort(array, 0, len(array) - 1)
+print(array)
