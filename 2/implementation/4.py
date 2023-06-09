@@ -18,11 +18,11 @@ a, b, d = map(int, input().split())
 vectorX = [-1, 0, 1, 0]
 vectorY = [0, 1, 0, -1]
 
-array = [[]] # 지도는 1,1이 원점이라.. 맨처음은 공백 배열로 ..
+array = [] # 지도는 1,1이 원점이라.. 맨처음은 공백 배열로 ..
 for i in range(n):  # 세로크기
     array.append(list(map(int, input().split())))
 
-result = 0
+result = 1
 count = 0
 # 현재위치도 방문처리
 array[a][b] = 1
@@ -36,11 +36,12 @@ while True:
     dx = a + vectorX[d]
     dy = b + vectorY[d]
     # 가보지 않았다면.. 전진!
-    if array[dx][dy] != 1:
+    if array[dx][dy] == 0:
         array[dx][dy] = 1
         result += 1
         a = dx
         b = dy
+        count = 0
     else:
         count += 1
         # 네방향 다 가봤거나 바다라면 한칸 뒤로 이동
