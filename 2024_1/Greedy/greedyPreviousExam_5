@@ -1,0 +1,18 @@
+# 볼링공은 N개, 번호는 순서대로 부여
+# 볼링공의 무게는 1~M
+# 두사람이 무게가 다른 볼링공을 고르는 경우의 수?
+
+
+n, m = map(int, input().split())
+
+ballArray = list(map(int, input().split()))
+
+result = 0
+for i in ballArray:
+    for j in ballArray:
+        if i == j:
+            continue
+        result += 1
+
+# 조합이므로 ,, 사람만큼 나눠줌
+print(result//2)
