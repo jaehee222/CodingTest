@@ -1,0 +1,18 @@
+# 숫자 카드게임
+# 여라개의 숫자 카드 중 가장 높은 숫자가 쓰인 카드 한장을 뽑는 게임
+# N: 행의 갯수, M은 열의 갯수
+# 행을 선택 -> 해당 행에 가장 작은 숫자의 카드 뽑아야함
+# 그중 가장 큰 숫자를 뽑기 위한 프로그램
+
+n, m = map(int, input().split())
+
+cardArray = []
+max_cardNum = 0
+for i in range(n):
+    cardArray.append(list(map(int, input().split())))
+    cardArray[i].sort()
+    if cardArray[i][0] > max_cardNum:
+        max_cardNum = cardArray[i][0]
+
+print(max_cardNum)
+
